@@ -56,11 +56,15 @@ class WebController extends Controller
             abort(404);
         }
 
-        $comments = Comment::where('ResId',$res['Id'])->with(['comment_pictures:CommentId,Url,IsFoody','customer:Id,DisplayName,Avatar,IsFoody'])->paginate(10);
+        $comments = Comment::where('ResId',$res['Id'])->with(['comment_pictures:CommentId,Url','customer:Id,DisplayName,Avatar'])->paginate(10);
         $args = [
             'res' => $res,
             'comments' => $comments,
         ];
+        if($request->wantsJson())
+        {
+            return response()->json($args,200);
+        }
         return view('Web.Pages.res-detail',$args);
     }
     public function getNearest($long='',$lat='',$limit=20){
