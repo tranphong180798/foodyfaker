@@ -22,17 +22,12 @@
                 <div class="row single-product-area">
                     <div class="col-lg-5 col-md-6">
                         <div class="lg-image">
-                            @if($res['IsFoody'])
-                                <a class="popup-img venobox vbox-item" href="{{$res['PhotoUrl']}}"
-                                   data-gall="myGallery">
-                                    <img id="detail-product-img" src="{{$res['PhotoUrl']}}" alt="product image">
-                                </a>
-                            @else
-                                <a class="popup-img venobox vbox-item" href="/{{$res['PhotoUrl']}}"
-                                   data-gall="myGallery">
-                                    <img id="detail-product-img" src="/{{$res['PhotoUrl']}}" alt="product image">
-                                </a>
-                            @endif
+
+                            <a class="popup-img venobox vbox-item" href="{{$res['PhotoUrl']}}"
+                               data-gall="myGallery">
+                                <img id="detail-product-img" src="{{$res['PhotoUrl']}}" alt="product image">
+                            </a>
+
                         </div>
                     </div>
 
@@ -94,13 +89,13 @@
                                         <ul>
                                             <li class="facebook"><a href="http://www.facebook.com/sharer.php?u={{asset('res-detail').'/'.$res['Id']}}"><i class="fa fa-facebook"></i>Facebook</a>
                                             </li>
-{{--                                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Twitter</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i>Google--}}
-{{--                                                    +</a></li>--}}
-{{--                                            <li class="instagram"><a href="#"><i--}}
-{{--                                                        class="fa fa-instagram"></i>Instagram</a>--}}
-{{--                                            </li>--}}
+                                            {{--                                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Twitter</a>--}}
+                                            {{--                                            </li>--}}
+                                            {{--                                            <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i>Google--}}
+                                            {{--                                                    +</a></li>--}}
+                                            {{--                                            <li class="instagram"><a href="#"><i--}}
+                                            {{--                                                        class="fa fa-instagram"></i>Instagram</a>--}}
+                                            {{--                                            </li>--}}
                                         </ul>
                                     </div>
                                 </div>
@@ -149,7 +144,7 @@
                                         <div class="comment-header">
                                             <div class="row">
                                                 <div class="mt-10 mb-10 ml-20 mr-10">
-                                                    <img class="avatar" src="{{$comment['customer']['Avatar'] ? ($comment['customer']['IsFoody'] ? $comment['customer']['Avatar'] : '/'.$comment['customer']['Avatar']) : '/images/menu/logo/avatar.jpg'}}">
+                                                    <img class="avatar" src="{{ $comment['customer']['Avatar']}}">
                                                 </div>
                                                 <div class="mt-10">
                                                     <p class="comment-user"
@@ -172,9 +167,8 @@
                                                                  style="text-align: center; padding: 2px !important;">
                                                                 <p>+{{count($comment['comment_pictures']) - 3}}</p>
                                                                 <img class="comment-image last-comment-image"
-                                                                     is-foody="{{$pic['IsFoody']}}"
                                                                      urls="{{json_encode($comment['comment_pictures'])}}"
-                                                                     src="{{$pic['IsFoody'] ? $pic['Url'] : '/'.$pic['Url']}}">
+                                                                     src="{{ $pic['Url']}}">
                                                             </div>
                                                             @break
                                                         @endif
@@ -183,7 +177,7 @@
                                                             <img class="comment-image " style="text-align: center"
                                                                  is-foody="{{$pic['IsFoody']}}"
                                                                  urls="{{json_encode($comment['comment_pictures'])}}"
-                                                                 src="{{$pic['IsFoody'] ? $pic['Url'] : '/'.$pic['Url']}}">
+                                                                 src="{{$pic['Url'] }}">
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -343,11 +337,7 @@
                                 <div class="product-details-left">
                                     <div class="product-details-images slider-navigation-1">
                                         <div class="lg-image">
-                                            @if($res['IsFoody'])
-                                                <img src="{{$res['PhotoUrl']}}" alt="product image">
-                                            @else
-                                                <img src="/{{$res['PhotoUrl']}}" alt="product image">
-                                            @endif
+                                            <img src="{{$res['PhotoUrl']}}" alt="product image">
                                         </div>
                                     </div>
                                     <div style="text-align: center; margin-top: 10px">
@@ -379,7 +369,7 @@
                                     <div style="text-align: center;">
                                         <p style="font-size: large; font-weight: bold">Trung bình:
                                             <span id="AvgRatingLabel"
-                                                style="margin-left:5px; font-size: large; font-weight: bold; color: red">5</span>
+                                                  style="margin-left:5px; font-size: large; font-weight: bold; color: red">5</span>
                                         </p>
                                     </div>
                                 </div>
@@ -401,7 +391,7 @@
 
                                             </div>
                                             <div style="margin-left: 14px" class="select-img-comment"><input id="image"
-                                                    style="margin-top: -5px; opacity: 0; height: 140px" type="file"><i
+                                                                                                             style="margin-top: -5px; opacity: 0; height: 140px" type="file"><i
                                                     id="add-img-comment" class="fas fa-plus"></i></div>
                                         </div>
                                         <div>
@@ -464,7 +454,7 @@
                 AvgRating : 5,
                 Description : '',
                 pictures : []
-        };
+            };
             this.report = {
                 object_id : null,
                 type : null,
@@ -618,7 +608,7 @@
             }
             this.calculateAvgRating = function (){
                 this.comment.AvgRating = (this.comment.PositionRating + this.comment.PriceRating + this.comment.QualityRating
-                + this.comment.ServiceRating + this.comment.SpaceRating)/5;
+                    + this.comment.ServiceRating + this.comment.SpaceRating)/5;
             }
             this.createComment = function (){
                 if(!this.token){
@@ -706,7 +696,7 @@
                 var fd = new FormData();
                 fd.append('image',$('#image')[0].files[0])
                 $.ajax({
-                        url : $('#detail-page').attr('api-upload-image'),
+                    url : $('#detail-page').attr('api-upload-image'),
                     method : 'POST',
                     data: fd,
                     contentType : false,
@@ -743,7 +733,7 @@
                 url : api_remove_image
             }).done(function (result){
                 if(result.success){
-                   $(el).parent().remove();
+                    $(el).parent().remove();
                 }else {
                     helper.showNotification(result.message,'danger')
                 }
