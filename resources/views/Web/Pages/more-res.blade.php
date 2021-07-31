@@ -460,7 +460,7 @@
         }
     </script>
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzlVX517mZWArHv4Dt3_JVG0aPmbSE5mE&callback=initMapToChoose" async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSOyoSMUohdbtn9JbB7pprzeiiDKY7J9A&callback=initMapToChoose" async
         defer>
     </script>
     <script defer
