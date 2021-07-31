@@ -463,7 +463,5 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSOyoSMUohdbtn9JbB7pprzeiiDKY7J9A&callback=initMapToChoose" async
         defer>
     </script>
-    <script defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSOyoSMUohdbtn9JbB7pprzeiiDKY7J9A&callback=initMap2">
-    </script>
+
 @endsection
