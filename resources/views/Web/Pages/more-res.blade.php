@@ -50,7 +50,7 @@
             var pr = this;
             this.getOpenRes = function (long, lat) {
                 $.ajax({
-                    url: pr.api_get_open_res,
+                    url: 'https://foodyfaker.herokuapp.com/api/res/get-open-res',
                     method: 'POST',
                     data: {
                         user_location: {
